@@ -11,7 +11,7 @@ public:
 	Rect(Vec2& topLeft, float width, float height);
 	Rect(Vec2& center, float halfWidth, float halfHeight);
 
-private:
+public:
 	float x0;
 	float x1;
 	float y0;
