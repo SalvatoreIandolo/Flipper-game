@@ -10,7 +10,7 @@ public:
 	Brick(Rect& in_rect, Color in_c);
 	void draw(Graphics& gfx) const;
 
-private:
+public:
 	Rect rect;
 	Color c;
 	bool destroyed = false;
