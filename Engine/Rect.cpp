@@ -20,7 +20,15 @@ Rect::Rect(Vec2& topLeft, float width, float height)
 	Rect(topLeft, Vec2(topLeft.x + width, topLeft.y + height));
 }
 
+bool Rect::isOverlapping(Rect& other_rect)
+{
+	return x1 >= other_rect.x0 && x0 <other_rect.x1
+		&& y1 >= other_rect.y0 && y0 < other_rect.y1;
+}
+
+/*
 Rect::Rect(Vec2& center, float halfWidth, float halfHeight)
 {
-	Rect( Vec2(center.x - halfWidth, center.y - halfHeight), Vec2(center.x + halfWidth, center.y + halfHeight) );
+	//Rect( Vec2(center.x - halfWidth, center.y - halfHeight), Vec2(center.x + halfWidth, center.y + halfHeight) );
 }
+*/
