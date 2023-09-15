@@ -16,7 +16,7 @@ void Brick::draw(Graphics& gfx) const
 
 bool Brick::detectBallCollition(Ball& ball)
 {
-	if (rect.isOverlapping(ball.getRect())) {
+	if ( !destroyed && rect.isOverlapping(ball.getRect())) {
 		destroyed = true;
 		ball.bouncingY();
 		return destroyed;

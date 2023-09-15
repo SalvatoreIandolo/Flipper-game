@@ -30,7 +30,8 @@ Game::Game(MainWindow& wnd)
 	ball(Vec2(300.0f, 300.0f), Vec2(200.0f, 200.0f)),
 	Walls(0.0f, 0.0f, float(gfx.ScreenWidth), float(gfx.ScreenHeight)),
 	soundBallCollition(L"Sounds\\arkpad.wav"),
-	brick(Rect(50.0f, 50.0f, 200.0f, 200.0f), Colors::Cyan)
+	brick(Rect(50.0f, 50.0f, 200.0f, 200.0f), Colors::Cyan),
+	paddle(Rect::fromCenter(Vec2(400.0f,400.0f),40.0f,10.0f),Colors::Green)
 {
 }
 
@@ -46,6 +47,12 @@ void Game::UpdateModel()
 {
 	const float dt = ft.mark();
 	ball.update(dt);
+	paddle.update(wnd.kbd,dt);
+	if (paddle.detectBallCollition(ball)) {
+		soundBallCollition.Play();
+	}
+	paddle.detectWallCollition(Walls);
+	
 	if (brick.detectBallCollition(ball)) {
 		soundBallCollition.Play();
 	}
@@ -60,5 +67,6 @@ void Game::ComposeFrame()
 {
 	ball.draw(gfx);
 	brick.draw(gfx);
+	paddle.draw(gfx);
 	
 }
