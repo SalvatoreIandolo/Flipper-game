@@ -10,7 +10,7 @@ public:
 	Rect(Vec2& topLeft, Vec2& bottomRight);
 	Rect(Vec2& topLeft, float width, float height);
 	bool isOverlapping(Rect& other_rect);
-	//Rect(Vec2& center, float halfWidth, float halfHeight);
+	static Rect fromCenter(const Vec2& center, float halfWidth, float halfHeight);
 	
 public:
 	float x0;

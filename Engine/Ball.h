@@ -8,6 +8,11 @@ public:
 	Ball() = default;
 	Ball(const Vec2& in_pos, const Vec2& in_vel);
 	void draw(Graphics& gfx);
+	void update(float dt);
+	bool detectWallCollition(const Rect& wall);
+	void bouncingX();
+	void bouncingY();
+	Rect getRect() const;
 
 public:
 	Vec2 pos;

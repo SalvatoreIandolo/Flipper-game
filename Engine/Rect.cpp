@@ -26,6 +26,12 @@ bool Rect::isOverlapping(Rect& other_rect)
 		&& y1 >= other_rect.y0 && y0 < other_rect.y1;
 }
 
+Rect Rect::fromCenter(const Vec2& center, float halfWidth, float halfHeight)
+{
+	Rect temp(center.x - halfWidth, center.y - halfHeight, center.x + halfWidth, center.y + halfHeight);
+	return temp;
+}
+
 /*
 Rect::Rect(Vec2& center, float halfWidth, float halfHeight)
 {
