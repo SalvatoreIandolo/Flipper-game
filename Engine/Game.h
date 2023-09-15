@@ -26,6 +26,7 @@
 #include "FrameTimer.h"
 #include "Ball.h"
 #include "Sound.h"
+#include "Brick.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	FrameTimer ft;
 	Rect Walls;
 	Sound soundBallCollition;
+	Brick brick;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

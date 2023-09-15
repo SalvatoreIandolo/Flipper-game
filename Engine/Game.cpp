@@ -20,18 +20,17 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include "Brick.h"
-#include "Ball.h"
 
 
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
-	ball(Vec2(300.0f,300.0f),Vec2(100.0f,100.0f)),
-	Walls(0.0f, 0.0f, float(gfx.ScreenWidth),float(gfx.ScreenHeight)),
-	soundBallCollition(L"Sounds\\arkpad.wav")
+	wnd(wnd),
+	gfx(wnd),
+	ball(Vec2(300.0f, 300.0f), Vec2(200.0f, 200.0f)),
+	Walls(0.0f, 0.0f, float(gfx.ScreenWidth), float(gfx.ScreenHeight)),
+	soundBallCollition(L"Sounds\\arkpad.wav"),
+	brick(Rect(50.0f, 50.0f, 200.0f, 200.0f), Colors::Cyan)
 {
 }
 
@@ -47,14 +46,19 @@ void Game::UpdateModel()
 {
 	const float dt = ft.mark();
 	ball.update(dt);
+	if (brick.detectBallCollition(ball)) {
+		soundBallCollition.Play();
+	}
 	if (ball.detectWallCollition(Walls)) {
 		soundBallCollition.Play();
 	}
+	
 	
 }
 
 void Game::ComposeFrame()
 {
 	ball.draw(gfx);
+	brick.draw(gfx);
 	
 }

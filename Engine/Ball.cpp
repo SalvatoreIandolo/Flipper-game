@@ -30,7 +30,7 @@ bool Ball::detectWallCollition(const Rect& wall)
 		collision = true;
 	}
 	else if (temp.x1 > wall.x1) {
-		pos.x -= wall.x1 - temp.x1;
+		pos.x -= temp.x1 - wall.x1;
 		bouncingX();
 		collision = true;
 	}
@@ -41,7 +41,7 @@ bool Ball::detectWallCollition(const Rect& wall)
 		collision = true;
 	}
 	else if (temp.y1 > wall.y1) {
-		pos.y -= wall.y1 - temp.y1;
+		pos.y -= temp.y1 - wall.y1;
 		bouncingY();
 		collision = true;
 	}
