@@ -6,14 +6,17 @@
 class Paddle {
 public:
 	Paddle() = default;
-	Paddle(Rect& in_paddle, Color in_c);
+	Paddle(Vec2 in_pos, float in_vel,float in_halfWidth, float in_halfHeight, Color in_c);
 	void draw(Graphics& gfx);
 	void update(Keyboard& kbd, float dt);
 	void detectWallCollition(Rect& wall);
 	bool detectBallCollition(Ball& ball);
+	Rect getRect() const;
 public:
-	Rect paddle;
+	Vec2 pos;
+	float halfHeigh;
+	float halfWidth;
 	Color c;
-	float speed = 300.0f;
+	float speed;
 
 };

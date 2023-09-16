@@ -1,46 +1,62 @@
 #include "Paddle.h"
 
-Paddle::Paddle(Rect& in_paddle, Color in_c)
+
+
+Paddle::Paddle(Vec2 in_pos, float in_vel, float in_halfWidth, float in_halfHeight, Color in_c)
 	:
-	paddle(in_paddle),
+	pos(in_pos),
+	halfWidth(in_halfWidth),
+	halfHeigh(in_halfHeight),
+	speed(in_vel),
 	c(in_c)
 {
+	
+	
 }
 
 void Paddle::draw(Graphics& gfx)
 {
-	gfx.DrawRect(paddle, c);
+	Rect rect = Rect::fromCenter(pos, halfWidth, halfHeigh);
+	gfx.DrawRect(rect,c);
 }
 
 void Paddle::update(Keyboard& kbd, float dt)
 {
 	if (kbd.KeyIsPressed(VK_LEFT)) {
-		paddle.x0 -= speed * dt;
-		paddle.x1 -= speed * dt;
+		pos.x -= speed * dt;
+		pos.x -= speed * dt;
 	}
 
 	if (kbd.KeyIsPressed(VK_RIGHT)) {
-		paddle.x0 += speed * dt;
-		paddle.x1 += speed * dt;
+		pos.x += speed * dt;
+		pos.x += speed * dt;
 	}
 }
 
 void Paddle::detectWallCollition(Rect& wall)
 {
-	if (paddle.x0 < wall.x0) {
-		paddle.x0 = 0;
+	Rect temp = getRect();
+
+	if (temp.x0 < wall.x0) {
+		pos.x += wall.x0 - temp.x0;
 	}
-	else if (paddle.x1 > wall.x1) {
-		paddle.x1 = 0;
+
+	if (temp.x1 > wall.x1) {
+		pos.x -=  temp.x1 - wall.x1;
 	}
 	
 }
 
 bool Paddle::detectBallCollition(Ball& ball)
 {
-	if (paddle.isOverlapping(ball.getRect())) {
+	if (getRect().isOverlapping(ball.getRect())) {
 		ball.bouncingY();
 		return true;
 	}
 	return false;
+}
+
+Rect Paddle::getRect() const
+{
+	return Rect::fromCenter(pos, halfWidth, halfHeigh);
 }
