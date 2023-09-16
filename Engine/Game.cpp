@@ -30,9 +30,26 @@ Game::Game(MainWindow& wnd)
 	ball(Vec2(300.0f, 300.0f), Vec2(200.0f, 200.0f)),
 	Walls(0.0f, 0.0f, float(gfx.ScreenWidth), float(gfx.ScreenHeight)),
 	soundBallCollition(L"Sounds\\arkpad.wav"),
-	brick(Rect(50.0f, 50.0f, 200.0f, 100.0f), Colors::Cyan),
 	paddle(Vec2(400.0f,400.0f),200.0f,50.0f,7.0f,Colors::Green)
 {
+	Vec2 startingGridPoint(0.0f, 0.0f);
+	Vec2 brickDimension(40.0f, 20.0f);
+
+	Color colors[6] = { Colors::Blue,Colors::Cyan, Colors::Magenta, Colors::Red,Colors::Gray,Colors::Yellow};
+
+	for (int i = 0; i < numBricksRow; i++) {
+		for (int y = 0; y < numBricksColumn; y++) {
+			bricks[i][y] = Brick(Rect(startingGridPoint.x,startingGridPoint.y,
+				startingGridPoint.x + brickDimension.x, startingGridPoint.y + brickDimension.y),
+				colors[i]);
+			startingGridPoint.x += brickDimension.x;
+			
+		}
+		
+		startingGridPoint.x = 0.0f;
+		startingGridPoint.y += brickDimension.y;
+	}
+
 }
 
 void Game::Go()
@@ -49,14 +66,23 @@ void Game::UpdateModel()
 	ball.update(dt);
 	paddle.update(wnd.kbd,dt);
 
+	for (int row1 = 0; row1 < numBricksRow; row1++) {
+		for (int col1 = 0; col1 < numBricksColumn; col1++) {
+			if (bricks[row1][col1].detectBallCollition(ball)) {
+				soundBallCollition.Play();
+			}
+
+		}
+
+	}
+	
+
 	if (paddle.detectBallCollition(ball)) {
 		soundBallCollition.Play();
 	}
 	paddle.detectWallCollition(Walls);
 	
-	if (brick.detectBallCollition(ball)) {
-		soundBallCollition.Play();
-	}
+	
 	if (ball.detectWallCollition(Walls)) {
 		soundBallCollition.Play();
 	}
@@ -66,8 +92,15 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	
 	ball.draw(gfx);
-	brick.draw(gfx);
 	paddle.draw(gfx);
+	for (int row = 0; row < numBricksRow; row++) {
+		for (int col = 0; col < numBricksColumn; col++) {
+			bricks[row][col].draw(gfx);
+			
+		}
+
+	}
 	
 }

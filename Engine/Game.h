@@ -45,13 +45,15 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	/********************************/
+	/*  User Variables              */
 	Ball ball;
 	FrameTimer ft;
 	Rect Walls;
 	Sound soundBallCollition;
-	Brick brick;
 	Paddle paddle;
-	/********************************/
-	/*  User Variables              */
+	static constexpr int numBricksRow = 6;
+	static constexpr int numBricksColumn = 10;
+	Brick bricks[numBricksRow][numBricksColumn];
 	/********************************/
 };
