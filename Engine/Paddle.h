@@ -13,6 +13,8 @@ public:
 	bool detectBallCollition(Ball& ball);
 	Rect getRect() const;
 public:
+	static constexpr float wingWidth = 10.0f;
+	Color wingColor = Colors::White;
 	Vec2 pos;
 	float halfHeigh;
 	float halfWidth;

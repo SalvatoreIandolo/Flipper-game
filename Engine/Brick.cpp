@@ -11,7 +11,7 @@ Brick::Brick(Rect& in_rect, Color in_c)
 void Brick::draw(Graphics& gfx) const
 {
 	if(!destroyed)
-		gfx.DrawRect(rect,c);
+		gfx.DrawRect(rect.getWithOffset(padding), c);
 }
 
 bool Brick::detectBallCollition(Ball& ball)

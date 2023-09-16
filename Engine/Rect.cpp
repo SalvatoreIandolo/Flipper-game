@@ -32,6 +32,12 @@ Rect Rect::fromCenter(const Vec2& center, float halfWidth, float halfHeight)
 	return temp;
 }
 
+Rect Rect::getWithOffset(float offset) const
+{
+	return Rect(x0 + offset, y0 + offset, x1 - offset, y1 - offset);
+}
+
+
 /*
 Rect::Rect(Vec2& center, float halfWidth, float halfHeight)
 {

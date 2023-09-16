@@ -10,9 +10,12 @@ public:
 	Brick(Rect& in_rect, Color in_c);
 	void draw(Graphics& gfx) const;
 	bool detectBallCollition(Ball& ball);
+	
 
 public:
+	static constexpr float padding = 1.0f;
 	Rect rect;
 	Color c;
 	bool destroyed = false;
+
 };

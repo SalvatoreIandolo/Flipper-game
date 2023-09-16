@@ -70,6 +70,7 @@ void Game::UpdateModel()
 		for (int col1 = 0; col1 < numBricksColumn; col1++) {
 			if (bricks[row1][col1].detectBallCollition(ball)) {
 				soundBallCollition.Play();
+				break;
 			}
 
 		}

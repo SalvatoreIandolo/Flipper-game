@@ -17,7 +17,10 @@ Paddle::Paddle(Vec2 in_pos, float in_vel, float in_halfWidth, float in_halfHeigh
 void Paddle::draw(Graphics& gfx)
 {
 	Rect rect = Rect::fromCenter(pos, halfWidth, halfHeigh);
-	gfx.DrawRect(rect,c);
+	gfx.DrawRect(rect,wingColor);
+	rect.x0 += wingWidth;
+	rect.x1 -= wingWidth;
+	gfx.DrawRect(rect, c);
 }
 
 void Paddle::update(Keyboard& kbd, float dt)
