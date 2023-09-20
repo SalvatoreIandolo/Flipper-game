@@ -68,7 +68,8 @@ void Game::UpdateModel()
 
 	for (int row1 = 0; row1 < numBricksRow; row1++) {
 		for (int col1 = 0; col1 < numBricksColumn; col1++) {
-			if (bricks[row1][col1].detectBallCollition(ball)) {
+			if (bricks[row1][col1].checkBallCollition(ball)) {
+				bricks[row1][col1].doBallCollition(ball);
 				soundBallCollition.Play();
 				break;
 			}

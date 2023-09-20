@@ -13,8 +13,9 @@ public:
 	void bouncingX();
 	void bouncingY();
 	Rect getRect() const;
+	Vec2 getPos() const;
 
-public:
+private:
 	Vec2 pos;
 	Vec2 vel;
 	static constexpr float radius = 7.0f;

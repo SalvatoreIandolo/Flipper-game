@@ -37,6 +37,11 @@ Rect Rect::getWithOffset(float offset) const
 	return Rect(x0 + offset, y0 + offset, x1 - offset, y1 - offset);
 }
 
+Vec2 Rect::getCenter() const
+{
+	return Vec2(x0 + (x1 / 2.0f), y0 +(y1 / 2.0f));
+}
+
 
 /*
 Rect::Rect(Vec2& center, float halfWidth, float halfHeight)

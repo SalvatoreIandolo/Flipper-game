@@ -12,6 +12,7 @@ public:
 	bool isOverlapping(Rect& other_rect);
 	static Rect fromCenter(const Vec2& center, float halfWidth, float halfHeight);
 	Rect getWithOffset(float offset) const;
+	Vec2 getCenter() const;
 	
 public:
 	float x0;

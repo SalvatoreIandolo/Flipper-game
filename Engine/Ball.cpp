@@ -62,3 +62,8 @@ Rect Ball::getRect() const
 {
 	return Rect::fromCenter(pos,radius,radius);
 }
+
+Vec2 Ball::getPos() const
+{
+	return pos;
+}

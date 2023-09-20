@@ -14,12 +14,21 @@ void Brick::draw(Graphics& gfx) const
 		gfx.DrawRect(rect.getWithOffset(padding), c);
 }
 
-bool Brick::detectBallCollition(Ball& ball)
+bool Brick::checkBallCollition(Ball& ball)
 {
-	if ( !destroyed && rect.isOverlapping(ball.getRect())) {
-		destroyed = true;
+	return !destroyed && rect.isOverlapping(ball.getRect());
+}
+
+void Brick::doBallCollition(Ball& ball)
+{
+	Vec2 ballPos = ball.getPos();
+
+	if (ballPos.x >= rect.x0 && ballPos.y <= rect.x1) {
 		ball.bouncingY();
-		return destroyed;
 	}
-	return false;
+	else {
+		ball.bouncingX();
+	}
+	destroyed = true;
+
 }
