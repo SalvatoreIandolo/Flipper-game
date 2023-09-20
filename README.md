@@ -1,1 +1,3 @@
 # Flipper game
+Recreation of the Arkanoid Flipper game using C++ and Chili Framework.
+Still under develpment...
